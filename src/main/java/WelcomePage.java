@@ -1,6 +1,4 @@
-import io.appium.java_client.MobileElement;
 import io.appium.java_client.ios.IOSDriver;
-import io.appium.java_client.pagefactory.iOSFindBy;
 
 
 public class WelcomePage {
@@ -11,20 +9,13 @@ public class WelcomePage {
         this.driver = driver;
     }
 
-    @iOSFindBy(accessibility = "START")
-    private MobileElement startButton;
-
-    @iOSFindBy(accessibility = "Sign In")
-    private MobileElement signInButton;
-
-
     public SignUpPage clickStartButton() {
-        startButton.click();
+        driver.findElementByAccessibilityId("START").click();
     return new SignUpPage(driver);
     }
 
     public SignInPage clickSignInButton() {
-        signInButton.click();
+        driver.findElementByAccessibilityId("Sign In").click();
         return new SignInPage(driver);
     }
 

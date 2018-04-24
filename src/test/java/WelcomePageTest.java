@@ -1,5 +1,4 @@
 import io.appium.java_client.ios.IOSDriver;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -15,17 +14,23 @@ public class WelcomePageTest extends Caps {
     @BeforeClass
     public void setUP() throws MalformedURLException {
         driver = capabilities();
-        welcomePage = PageFactory.initElements(driver, WelcomePage.class);
+        welcomePage = new WelcomePage(driver);
     }
 
    @Test
     public void startButtonTest(){
         SignUpPage signUpPage = welcomePage.clickStartButton();
+        String heading = signUpPage.getHeadingText();
+        Assert.assertEquals("header", heading);
+        driver.navigate().back();
     }
 
     @Test
     public void signUpButtonTest() {
+
         SignInPage signInPage = welcomePage.clickSignInButton();
+        String heading = signInPage.getHeadingText();
+        Assert.assertEquals("header", heading);
     }
 
 

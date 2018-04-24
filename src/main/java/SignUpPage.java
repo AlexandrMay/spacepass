@@ -8,6 +8,10 @@ public class SignUpPage {
         this.driver = driver;
     }
 
+    public String getHeadingText() {
+        return driver.findElementByAccessibilityId("header").getText();
+    }
+
 
 
 }
