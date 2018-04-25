@@ -9,7 +9,7 @@ public class SignInPage {
     }
 
     public String getHeadingText() {
-        return driver.findElementByAccessibilityId("header").getText();
+        return driver.findElementByAccessibilityId("Sign In").getText();
     }
 
 
