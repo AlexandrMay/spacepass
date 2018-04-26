@@ -1,3 +1,5 @@
+package Sprint_one;
+
 import io.appium.java_client.ios.IOSDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -13,7 +15,7 @@ public class WelcomePageTest extends Caps {
 
     @BeforeClass
     public void setUP() throws MalformedURLException {
-        driver = capabilities();
+        driver = Caps.capabilities();
         welcomePage = new WelcomePage(driver);
     }
 
