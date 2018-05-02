@@ -10,7 +10,37 @@ public class BookSpacePage {
         this.driver = driver;
     }
 
-    public String getHeadingText() {return driver.findElementByClassName("XCUIElementTypeNavigationBar").getText();}
+    public String getTabText() {return driver.findElementByXPath("(//XCUIElementTypeStaticText[@name=\"Meeting Room\"])[1]").getText();}
+
+    public MyProfilePage profileButtonClick() {
+        driver.findElementByAccessibilityId("Profile").click();
+        return new MyProfilePage(driver);
+    }
+
+    public MeetingRoomsOnMap showOnMapClick() {
+        driver.findElementByAccessibilityId("Show on map").click();
+        return new MeetingRoomsOnMap(driver);
+    }
+
+    public FilterPage filterButtonClick() {
+        driver.findElementByAccessibilityId("Filter").click();
+        return new FilterPage(driver);
+    }
+
+    public RoomPage goToRoom(int index) {
+        driver.findElementsByClassName("XCUIElementTypeCell").get(index).click();
+        return new RoomPage(driver);
+    }
+
+
+
+
+
+
+
+
+
+
 
 
 

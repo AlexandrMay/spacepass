@@ -18,6 +18,8 @@ public class SignUpPage {
 
     public String getEmailErrorText() {return driver.findElementByAccessibilityId("Wrong format of email").getText();}
 
+    public String getUseEmailErrorText() {return driver.findElementByAccessibilityId("This email address is already in use").getText();}
+
     public String getPasswordErrorText() {return driver.findElementByAccessibilityId("Password must be at least 8 characters").getText();}
 
     public String getPasswordText() {return driver.findElementsByClassName("XCUIElementTypeTextField").get(1).getText();}
@@ -35,7 +37,7 @@ public class SignUpPage {
 
     public SignUpPage typeCreds(String email, String password) {
         driver.findElementsByClassName("XCUIElementTypeTextField").get(0).sendKeys(email);
-        driver.findElementsByClassName("XCUIElementTypeTextField").get(1).sendKeys(password);
+        driver.findElementByClassName("XCUIElementTypeSecureTextField").sendKeys(password);
         return this;
     }
 
@@ -55,13 +57,19 @@ public class SignUpPage {
     }
 
     public TermsPage termsButtonClick() {
-        driver.findElementByAccessibilityId("I agree with Terms and conditions Terms of Payment Processing, Privacy Policy").click();
+        driver.findElementByAccessibilityId("terms").click();
         return new TermsPage(driver);
     }
 
     public BookSpacePage signUpButtonClick() {
         driver.findElementByAccessibilityId("Sign Up").click();
         return new BookSpacePage(driver);
+    }
+
+    public SignUpPage cleanCreds() {
+        driver.findElementsByClassName("XCUIElementTypeTextField").get(0).clear();
+        driver.findElementsByClassName("XCUIElementTypeTextField").get(1).clear();
+        return this;
     }
 
 

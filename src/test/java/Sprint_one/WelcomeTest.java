@@ -2,29 +2,27 @@ package Sprint_one;
 
 import io.appium.java_client.ios.IOSDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
+
+
 import java.net.MalformedURLException;
 
-
-public class WelcomePageTest extends Caps {
+public class WelcomeTest extends Caps{
 
     private IOSDriver driver;
     private WelcomePage welcomePage;
 
-    @BeforeClass
+    @BeforeMethod
     public void setUP() throws MalformedURLException {
         driver = Caps.capabilities();
         welcomePage = new WelcomePage(driver);
     }
 
-   @Test
+    @Test
     public void startButtonTest(){
         SignUpPage signUpPage = welcomePage.clickStartButton();
         String heading = signUpPage.getHeadingText();
         Assert.assertEquals("Sign Up", heading);
-        driver.navigate().back();
     }
 
     @Test
@@ -35,9 +33,11 @@ public class WelcomePageTest extends Caps {
         Assert.assertEquals("Sign In", heading);
     }
 
-
-    @AfterClass
+    @AfterMethod
     public void tearDown() {
         driver.quit();
     }
 }
+
+
+
