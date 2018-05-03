@@ -7,7 +7,7 @@ import org.testng.annotations.*;
 
 import java.net.MalformedURLException;
 
-public class WelcomeTest extends Caps{
+public class WelcomePageTest extends Caps{
 
     private IOSDriver driver;
     private WelcomePage welcomePage;

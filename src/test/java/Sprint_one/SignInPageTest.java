@@ -4,9 +4,7 @@ import io.appium.java_client.ios.IOSDriver;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-
 import java.net.MalformedURLException;
-
 public class SignInPageTest extends Caps{
 
     private IOSDriver driver;

@@ -10,7 +10,23 @@ public class FilterPage {
         this.driver = driver;
     }
 
-    public String getHeadingText() {return driver.findElementByAccessibilityId("").getText();}
+    public String getHeadingText() {return driver.findElementByClassName("XCUIElementTypeNavigationBar").getText();}
+
+    public BookSpacePage cancelClick() {
+        driver.findElementByAccessibilityId("Cancel").click();
+        return new BookSpacePage(driver);
+    }
+
+    public BookSpacePage applyClick() {
+        driver.findElementByAccessibilityId("Apply").click();
+        return new BookSpacePage(driver);
+    }
+
+
+
+
+
+
 
 
 
