@@ -22,11 +22,11 @@ public class SignUpPage {
 
     public String getPasswordErrorText() {return driver.findElementByAccessibilityId("Password must be at least 8 characters").getText();}
 
+    public String getEmailtext() {return driver.findElementsByClassName("XCUIElementTypeTextField").get(0).getText();}
+
     public String getPasswordText() {return driver.findElementsByClassName("XCUIElementTypeTextField").get(1).getText();}
 
-    public Boolean emailErrorTextIsVisible() {return driver.findElementByAccessibilityId("Wrong format of email").isDisplayed();}
 
-    public Boolean passwordErrorTextIsVisible() {return driver.findElementByAccessibilityId("Password must be at least 8 characters").isDisplayed();}
 
 
 
@@ -57,7 +57,7 @@ public class SignUpPage {
     }
 
     public TermsPage termsButtonClick() {
-        driver.findElementByAccessibilityId("terms").click();
+        driver.findElementByXPath("//XCUIElementTypeStaticText[@name=\"I agree with Terms and conditions Terms of Payment Processing, Privacy Policy\"]").click();
         return new TermsPage(driver);
     }
 
@@ -68,7 +68,7 @@ public class SignUpPage {
 
     public SignUpPage cleanCreds() {
         driver.findElementsByClassName("XCUIElementTypeTextField").get(0).clear();
-        driver.findElementsByClassName("XCUIElementTypeTextField").get(1).clear();
+        driver.findElementByClassName("XCUIElementTypeSecureTextField").clear();
         return this;
     }
 

@@ -55,7 +55,7 @@ public class SignInPage {
 
     public SignInPage cleanCreds() {
         driver.findElementsByClassName("XCUIElementTypeTextField").get(0).clear();
-        driver.findElementsByClassName("XCUIElementTypeTextField").get(1).clear();
+        driver.findElementByClassName("XCUIElementTypeSecureTextField").clear();
         return this;
     }
 

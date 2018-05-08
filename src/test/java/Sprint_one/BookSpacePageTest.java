@@ -1,9 +1,8 @@
 package Sprint_one;
 
-import Sprint_two.RoomPage;
-import io.appium.java_client.TouchAction;
+import Sprint_two.MyOfficePage;
+import Sprint_two.MeetingRoomPage;
 import io.appium.java_client.ios.IOSDriver;
-import org.openqa.selenium.Dimension;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -18,9 +17,11 @@ public class BookSpacePageTest extends Caps{
     private WelcomePage welcomePage;
     private BookSpacePage bookSpacePage;
 
+
     @BeforeClass
     public void setUP() throws MalformedURLException {
-        driver = Caps.capabilities();
+        driver = capabilities();
+
         bookSpacePage = new BookSpacePage(driver);
         signInPage = new SignInPage(driver);
         welcomePage = new WelcomePage(driver);
@@ -29,43 +30,43 @@ public class BookSpacePageTest extends Caps{
         signInPage.signInButtonclick();
     }
 
-    @Test
+    @Test(priority = 1)
     public void meetingRoomsOnMapButtonClick() {
-        MeetingRoomsOnMap meetingRoomsOnMap = bookSpacePage.showOnMapClick();
+        MeetingRoomsOnMapPage meetingRoomsOnMap = bookSpacePage.showOnMapClick();
         String heading = meetingRoomsOnMap.getHeadingText();
         Assert.assertEquals("Meeting rooms on map", heading);
         meetingRoomsOnMap.backButtonClick();
 
     }
 
-    @Test
+    @Test(priority = 2)
     public void filterButtonTest() {
         FilterPage filterPage = bookSpacePage.filterButtonClick();
         String heading = filterPage.getHeadingText();
-        Assert.assertEquals("Filter", heading);
+        Assert.assertEquals("LOCATION", heading);
         filterPage.cancelClick();
     }
 
-    @Test
+    @Test(priority = 3)
     public void tapToRoom() {
-        RoomPage roomPage = bookSpacePage.goToRoom(0);
-        String heading = roomPage.getHeadingText();
-        Assert.assertEquals("Room", heading);
+        MeetingRoomPage roomPage = bookSpacePage.goToRoom(0);
+        String heading = roomPage.getStartText();
+        Assert.assertEquals("Start", heading);
         roomPage.backButtonClick();
     }
 
-    @Test
-    public void swipeUpDownTest() {
-
+    @Test(priority = 5)
+    public void swipeUpTest() throws InterruptedException {
+        bookSpacePage.swipeUp();
         Assert.assertTrue(bookSpacePage.roomIsVisible(2));
     }
 
-    @Test
-    public void swipeLeftRightOnTimelineTest() {
-
+    @Test(priority = 4)
+    public void swipeTimelineTest() throws InterruptedException {
+        bookSpacePage.swipeLeft();
+        String text = bookSpacePage.timelineIsSwiped();
+        Assert.assertEquals("13:00", text);
     }
-
-
 
     @AfterClass
     public void tearDown() {

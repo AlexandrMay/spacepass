@@ -17,13 +17,13 @@ public class SignUpPageTest extends Caps {
 
     @BeforeClass
     public void setUP() throws MalformedURLException {
-        driver = Caps.capabilities();
+        driver = capabilities();
         signUpPage = new SignUpPage(driver);
         welcomePage = new WelcomePage(driver);
         welcomePage.clickStartButton();
     }
 
-    @Test //+
+    @Test(priority = 1)
     public void skipButtonTest(){
         BookSpacePage bookSpacePage = signUpPage.skipButtonClick();
         String heading = bookSpacePage.getTabText();
@@ -33,16 +33,16 @@ public class SignUpPageTest extends Caps {
 
     }
 
-    /*
-    @Test    Issue #8
+
+   /*@Test(priority = 8)
     public void termsButtonTest() {
         TermsPage termsPage = signUpPage.termsButtonClick();
         String heading = termsPage.getHeadingText();
         Assert.assertEquals("Terms and conditions Terms of Payment Processing, Privacy Policy", heading);
         termsPage.cancelButtonClick();
-    } */
+    }*/
 
-    @Test //+
+    @Test (priority = 2)
     public void iHaveAnAccTest() {
         SignInPage signInPage = signUpPage.iHaveAnAccButtonClick();
         String heading = signInPage.getHeadingText();
@@ -50,68 +50,54 @@ public class SignUpPageTest extends Caps {
         signInPage.signUpClick();
     }
 
-  /*      Issue #6
-    @Test
-    public void emptyFieldsTest() {
-        signUpPage.signUpButtonClick();
-        Boolean emailError = signUpPage.emailErrorTextIsVisible();
-        Boolean passError = signUpPage.passwordErrorTextIsVisible();
-        Assert.assertFalse(emailError);
-        Assert.assertFalse(passError);
-    }
-    */
-
-    @Test //+
+    @Test(priority = 3)
     public void eyeButtonTest() {
         signUpPage.typeCreds("test1@test.com", "12345678");
         signUpPage.eyeButtonclick();
         String password = signUpPage.getPasswordText();
         Assert.assertEquals("12345678", password);
+        signUpPage.eyeButtonclick();
         signUpPage.cleanCreds();
     }
 
-    @Test //+
+    @Test(priority = 4)
     public void emailIsInUseTest() {
         signUpPage.typeCreds("test@test.com", "12345678");
         signUpPage.signUpButtonClick();
         String error = signUpPage.getUseEmailErrorText();
         Assert.assertEquals("This email address is already in use", error);
-        signUpPage.eyeButtonclick();
         signUpPage.cleanCreds();
     }
 
-    @Test
+    @Test(priority = 5)
     public void checkboxIsUncheckedTest() {
         signUpPage.typeCreds("test1@test.com", "12345678");
         String heading = signUpPage.getHeadingText();
         signUpPage.signUpButtonClick();
         Assert.assertEquals("Sign Up", heading);
-        signUpPage.eyeButtonclick();
         signUpPage.cleanCreds();
     }
 
-    @Test
+    /* @Test(priority = 6)      этот тест пока не проходим, до момента возможности удалять юзеров
     public void validCredsTest() {
-        signUpPage.typeCreds("test1@test.com", "123456789");
+        signUpPage.typeCreds("test123@test.com", "123456789");
         signUpPage.checkBoxclick();
         BookSpacePage bookSpacePage = signUpPage.signUpButtonClick();
         String heading = bookSpacePage.getTabText();
         Assert.assertEquals("Meeting Room", heading);
         MyProfilePage myProfilePage = bookSpacePage.profileButtonClick();
         myProfilePage.logOutClick();
-    }
+    } */
 
-    @Test
+    @Test(priority = 7)
     public void invalidCreds() {
         signUpPage.typeCreds("test", "test");
         String emailError = signUpPage.getEmailErrorText();
         String passwordError = signUpPage.getPasswordErrorText();
         Assert.assertEquals("Wrong format of email", emailError);
         Assert.assertEquals("Password must be at least 8 characters", passwordError);
-        signUpPage.eyeButtonclick();
         signUpPage.cleanCreds();
     }
-
 
 
     @AfterClass

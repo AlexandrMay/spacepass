@@ -15,10 +15,12 @@ public class Caps {
     public static IOSDriver capabilities() throws MalformedURLException {
 
         DesiredCapabilities cap = new DesiredCapabilities();
-        cap.setCapability(MobileCapabilityType.DEVICE_NAME, "iPhone 6");
+
+        cap.setCapability(MobileCapabilityType.DEVICE_NAME, "iPhone");
         cap.setCapability(MobileCapabilityType.PLATFORM_NAME, "IOS");
-        cap.setCapability(MobileCapabilityType.AUTOMATION_NAME, "XCUITest");
-        cap.setCapability(MobileCapabilityType.APP, "/Users/woxapp/Library/Developer/Xcode/DerivedData/SpaceIn-alhxxnypidqmjhhayddycdmwidpu/Build/Products/Debug-iphonesimulator/SpaceIn.app");
+        cap.setCapability("platformVersion", "11.2.6");
+        cap.setCapability("udid", "a99c843b6943252b38f95b0fd49c1f0e9a5692cb");
+        cap.setCapability(MobileCapabilityType.APP, "/Users/woxapp/Library/Developer/Xcode/DerivedData/SpaceIn-bonxeqhfksozaecyzhrdaibjdpvq/Build/Products/Debug-iphoneos/SpaceIn.app");
         driver = new IOSDriver(new URL("http://127.0.0.1:4723/wd/hub"),cap);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         return driver;

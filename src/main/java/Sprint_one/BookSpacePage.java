@@ -1,12 +1,13 @@
 package Sprint_one;
 
-import Sprint_two.RoomPage;
-import io.appium.java_client.MobileBy;
+import Sprint_two.MyOfficePage;
+import Sprint_two.MeetingRoomPage;
 import io.appium.java_client.SwipeElementDirection;
-import io.appium.java_client.TouchAction;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.ios.IOSElement;
 import org.openqa.selenium.Dimension;
+
+import java.util.concurrent.TimeUnit;
 
 public class BookSpacePage {
 
@@ -18,14 +19,16 @@ public class BookSpacePage {
 
     public String getTabText() {return driver.findElementByXPath("(//XCUIElementTypeStaticText[@name=\"Meeting Room\"])[1]").getText();}
 
+    public String timelineIsSwiped() {return driver.findElementByXPath("(//XCUIElementTypeStaticText[@name=\"13:00\"])[1]").getText();}
+
     public MyProfilePage profileButtonClick() {
         driver.findElementByAccessibilityId("Profile").click();
         return new MyProfilePage(driver);
     }
 
-    public MeetingRoomsOnMap showOnMapClick() {
+    public MeetingRoomsOnMapPage showOnMapClick() {
         driver.findElementByAccessibilityId("Show on map").click();
-        return new MeetingRoomsOnMap(driver);
+        return new MeetingRoomsOnMapPage(driver);
     }
 
     public FilterPage filterButtonClick() {
@@ -33,27 +36,33 @@ public class BookSpacePage {
         return new FilterPage(driver);
     }
 
-    public RoomPage goToRoom(int index) {
+    public MeetingRoomPage goToRoom(int index) {
         driver.findElementsByClassName("XCUIElementTypeCell").get(index).click();
-        return new RoomPage(driver);
+        return new MeetingRoomPage(driver);
     }
 
     public Boolean roomIsVisible(int index){
         return driver.findElementsByClassName("XCUIElementTypeCell").get(index).isDisplayed();
     }
 
-    public BookSpacePage swipeDown() {
-
-
+    public BookSpacePage swipeUp() throws InterruptedException {
+       driver.swipe(100, 450,500, 100, 750);
+       Thread.sleep(1000);
         return this;
     }
 
-    public BookSpacePage swipeUp(int index) {
-        IOSElement element = (IOSElement) driver.findElementsByClassName("XCUIElementTypeCell").get(index);
-
-
+    public BookSpacePage swipeLeft() throws InterruptedException {
+        driver.swipe(335, 350, 100, 350, 750);
+        Thread.sleep(1000);
         return this;
     }
+
+    public MyOfficePage myOfficeClick() {
+        driver.findElementByAccessibilityId("My Office").click();
+        return new MyOfficePage(driver);
+    }
+
+
 
 
 

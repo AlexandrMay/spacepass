@@ -14,7 +14,7 @@ public class WelcomePageTest extends Caps{
 
     @BeforeMethod
     public void setUP() throws MalformedURLException {
-        driver = Caps.capabilities();
+        driver = capabilities();
         welcomePage = new WelcomePage(driver);
     }
 

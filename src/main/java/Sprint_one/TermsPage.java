@@ -11,7 +11,7 @@ public class TermsPage {
     }
 
 
-    public String getHeadingText() {return driver.findElementByXPath("//XCUIElementTypeOther[@name=Terms and conditions Terms of Payment Processing, Privacy Policy]").getText();}
+    public String getHeadingText() {return driver.findElementByXPath("//XCUIElementTypeOther[@name=\"Terms and conditions Terms of Payment Processing, Privacy Policy\"]").getText();}
 
     public SignUpPage cancelButtonClick() {
         driver.findElementByAccessibilityId("Cancel").click();
